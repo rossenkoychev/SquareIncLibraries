@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 
 //this content provider is used to get data from the appropriate data source. be it web call or db or both
 class DataProvider {
@@ -20,26 +21,18 @@ class DataProvider {
 
     init {
         reposClient = ReposClient()
-        //repos.value= listOf()
+
     }
 
     fun getRepos() {
         val disposable = CompositeDisposable()
         disposable.add(reposClient.queryRepos()
+            .delay(2000, TimeUnit.MILLISECONDS)  //just for testing
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
                 if (response.isSuccessful) {
                     repos.value = response.body()
-
-//                    response?.let {
-//                        if (response.isSuccessful) {
-//                            val result = response.body()
-//                            result?.let {
-//                                return List(result.size()) { i -> SkuDetails(result.get(i).toString()) }
-//                            }
-//                        }
-//                    }
                 }
                 disposable.dispose()
             }
@@ -47,13 +40,28 @@ class DataProvider {
                     repos.value = listOf()
                     //TODO notify for an error, use the response object to add an error to it and it there is error ui should be able to show it.
                     //OR just use another obsrevable
-                    var b = 4
-                    var c = b
                 }
             ))
     }
 
     fun getStargazers(repo: String) {
-        //TODO get query satrgazer with rxkotlin
+        val disposable = CompositeDisposable()
+        disposable.add(reposClient.queryStargazers(repo)
+            .delay(2000, TimeUnit.MILLISECONDS)  //just for testing
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                if (response.isSuccessful) {
+                   // repos.value = response.body()
+                    val a =5
+                }
+                disposable.dispose()
+            }
+                , { error ->
+                    repos.value = listOf()
+                    //TODO notify for an error, use the response object to add an error to it and it there is error ui should be able to show it.
+                    //OR just use another obsrevable
+                }
+            ))
     }
 }

@@ -30,4 +30,8 @@ class ReposClient{
     fun queryRepos(): Observable<Response<List<Repository>>> {
         return squareIncService.queryRepos()
     }
+
+    fun queryStargazers(repoName:String): Observable<Response<JsonArray>>{
+        return squareIncService.getStargazers(repoName)
+    }
 }

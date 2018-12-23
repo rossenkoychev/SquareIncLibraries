@@ -1,12 +1,12 @@
 package com.example.rossen.squareinclibs
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.rossen.squareinclibs.dummy.DummyContent
-import kotlinx.android.synthetic.main.activity_library_detail.*
+import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.library_detail.view.*
 
 /**
@@ -20,20 +20,16 @@ class LibraryDetailFragment : Fragment() {
     /**
      * The dummy content this fragment is presenting.
      */
-    private var item: DummyContent.DummyItem? = null
+    private lateinit var viewModel: LibraryListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-            if (it.containsKey(ARG_ITEM_ID)) {
-                // Load the dummy content specified by the fragment
-                // arguments. In a real-world scenario, use a Loader
-                // to load content from a content provider.
-                item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-                activity?.toolbar_layout?.title = item?.content
-            }
-        }
+        viewModel = activity?.run {
+            ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
+
+
     }
 
     override fun onCreateView(
@@ -43,10 +39,6 @@ class LibraryDetailFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.library_detail, container, false)
 
         // Show the dummy content as text in a TextView.
-        item?.let {
-            rootView.library_detail.text = it.details
-        }
-
         return rootView
     }
 

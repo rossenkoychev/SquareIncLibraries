@@ -14,6 +14,7 @@ class LibraryListViewModel(val context: Application) : AndroidViewModel(context)
 
     var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
     val dataProvider: DataProvider
+    var selectedRepo: MutableLiveData<Repository> = MutableLiveData()
 
     init {
         dataProvider = DataProvider()
@@ -22,20 +23,8 @@ class LibraryListViewModel(val context: Application) : AndroidViewModel(context)
         //getRepos()
     }
 
-//    private fun getRepos() {
-//        val disposable = CompositeDisposable()
-//        disposable.add(dataProvider.repos
-//            .observeOn(Schedulers.io())
-//            .subscribeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                {
-//
-//                    disposable.dispose()
-//                },
-//                {
-//                    disposable.dispose()
-//                }
-//            ))
-//        dataProvider.getRepos()
-//    }
+    fun getStargazers(repo: String) {
+        dataProvider.getStargazers(repo)
+    }
+
 }

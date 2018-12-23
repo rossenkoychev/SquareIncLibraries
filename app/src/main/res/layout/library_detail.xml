@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          android:id="@+id/library_detail"
-          style="?android:attr/textAppearanceLarge"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:padding="16dp"
-          android:textIsSelectable="true"
-          tools:context=".LibraryDetailFragment"/>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/repoName"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context=".LibraryDetailFragment" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/libraryListRecyclerView"
+        android:name="com.example.rossen.squareinclibs.LibraryListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repoName"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        tools:listitem="@layout/library_list_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/libraryListRecyclerView"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@android:drawable/stat_notify_chat" />
+
+</android.support.constraint.ConstraintLayout>

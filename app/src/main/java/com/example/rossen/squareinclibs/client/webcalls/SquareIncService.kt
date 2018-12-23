@@ -2,7 +2,6 @@ package com.example.rossen.squareinclibs.client.webcalls
 
 import com.example.rossen.squareinclibs.model.Repository
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET

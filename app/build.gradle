@@ -59,6 +59,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$mRxkotlinVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding:$mRxbindingVersion"
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     // Architecture components
     implementation "android.arch.lifecycle:runtime:$mArchLifecycleVersion"
     implementation "android.arch.lifecycle:extensions:$mArchLifecycleVersion"
