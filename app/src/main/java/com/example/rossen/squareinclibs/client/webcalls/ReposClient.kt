@@ -1,5 +1,6 @@
 package com.example.rossen.squareinclibs.client.webcalls
 
+import com.example.rossen.squareinclibs.model.Repository
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -26,7 +27,7 @@ class ReposClient{
         squareIncService = retrofit.create(SquareIncService::class.java)
     }
 
-    fun queryRepos(): Observable<Response<JsonArray>> {
+    fun queryRepos(): Observable<Response<List<Repository>>> {
         return squareIncService.queryRepos()
     }
 }

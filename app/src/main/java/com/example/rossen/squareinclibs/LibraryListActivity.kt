@@ -1,13 +1,15 @@
 package com.example.rossen.squareinclibs
 
 
+
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.LinearLayoutManager
 
-
-import com.example.rossen.squareinclibs.dummy.DummyContent
+import com.example.rossen.squareinclibs.model.Repository
+import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.activity_library_list.*
 import kotlinx.android.synthetic.main.library_list.*
 
@@ -17,13 +19,13 @@ class LibraryListActivity : AppCompatActivity() {
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
-    private lateinit var viewModel:LibrariyListViewModel
+    private lateinit var viewModel: LibraryListViewModel
     private var twoPane: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library_list)
-        viewModel = ViewModelProviders.of(this).get(LibrariyListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
         setSupportActionBar(toolbar)
         toolbar.title = title
 
@@ -34,12 +36,19 @@ class LibraryListActivity : AppCompatActivity() {
             // activity should be in two-pane mode.
             twoPane = true
         }
-        setupRecyclerView(library_list)
+        setupRecyclerView()
     }
 
-    private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+    private fun setupRecyclerView() {
+       // libraryList.adapter = RepositoriesRecyclerViewAdapter(this, twoPane)
+
+        val adapter = RepositoriesRecyclerViewAdapter(this,twoPane)
+        libraryListRecyclerView.layoutManager = LinearLayoutManager(this)
+        libraryListRecyclerView. adapter = adapter
+
+        viewModel.repositories.observe(this, Observer {
+            adapter.loadItems(it ?: emptyList())
+            adapter.notifyDataSetChanged()
+        })
     }
-
-
 }
