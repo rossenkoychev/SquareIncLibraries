@@ -19,6 +19,8 @@ class DataProvider {
     val repos: MutableLiveData<List<Repository>> = MutableLiveData()
     val errorLoadingRepos: PublishSubject<String> = PublishSubject.create() // TODO think of how to combine those two
 
+    val stargazers: MutableLiveData<List<Stargazer>> = MutableLiveData()
+
     init {
         reposClient = ReposClient()
 
@@ -44,16 +46,16 @@ class DataProvider {
             ))
     }
 
-    fun getStargazers(repo: String) {
+    fun getStargazers(repository: Repository) {
         val disposable = CompositeDisposable()
-        disposable.add(reposClient.queryStargazers(repo)
-            .delay(2000, TimeUnit.MILLISECONDS)  //just for testing
+        disposable.add(reposClient.queryStargazers(repository.name)
+           // .delay(2000, TimeUnit.MILLISECONDS)  //just for testing
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
                 if (response.isSuccessful) {
-                   // repos.value = response.body()
-                    val a =5
+                    repository.stargazers = response.body()
+                    stargazers.value=response.body()
                 }
                 disposable.dispose()
             }

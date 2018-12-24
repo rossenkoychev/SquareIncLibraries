@@ -1,4 +1,8 @@
 package com.example.rossen.squareinclibs.model
 
-class Stargazer(val username:String,val avatar:String) {
-}
+import com.google.gson.annotations.SerializedName
+
+class Stargazer(
+    @SerializedName("login") val userName: String,
+    @SerializedName("avatar_url") val avatar: String
+)

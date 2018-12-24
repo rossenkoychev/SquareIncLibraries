@@ -5,14 +5,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rossen.squareinclibs.adapter.RepositoriesRecyclerViewAdapter
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
-import kotlinx.android.synthetic.main.library_list.*
 import kotlinx.android.synthetic.main.library_list.view.*
+import android.support.v7.widget.DividerItemDecoration
+
 
 class LibraryListFragment : Fragment() {
 
@@ -33,18 +33,33 @@ class LibraryListFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState);
         val rootView = inflater.inflate(R.layout.library_list, container, false)
-
-        // Show the dummy content as text in a TextView.
-        var list = rootView.findViewById<RecyclerView>(R.id.libraryListRecyclerView)
-            setupAdapter(rootView)
+        setupAdapter(rootView)
         return rootView
     }
 
-    fun setupAdapter(rootView:View) {
+    private fun setupAdapter(rootView: View) {
         val adapter = RepositoriesRecyclerViewAdapter()
+        val recyclerView = rootView.libraryListRecyclerView
+        val layoutManager = LinearLayoutManager(activity)
 
-        rootView.libraryListRecyclerView.layoutManager = LinearLayoutManager(activity)
-        rootView.libraryListRecyclerView.adapter = adapter
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            layoutManager.orientation
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
+        loadData(adapter)
+
+
+    }
+
+    private fun loadData(adapter: RepositoriesRecyclerViewAdapter) {
+
+        adapter.loadItems((viewModel.repositories.value) ?: emptyList())
+        adapter.notifyDataSetChanged()
 
         viewModel.repositories.observe(this, Observer {
             adapter.loadItems(it ?: emptyList())
@@ -52,8 +67,7 @@ class LibraryListFragment : Fragment() {
         })
 
         adapter.selectedItemSubject.observe(this, Observer {
-            //showDetails()
-            viewModel.selectedRepo.value = it
+            viewModel.setSelectedRepoValue(it)
         })
     }
 }

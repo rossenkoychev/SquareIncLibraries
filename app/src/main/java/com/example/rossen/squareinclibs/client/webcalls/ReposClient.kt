@@ -1,6 +1,7 @@
 package com.example.rossen.squareinclibs.client.webcalls
 
 import com.example.rossen.squareinclibs.model.Repository
+import com.example.rossen.squareinclibs.model.Stargazer
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -12,7 +13,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ReposClient{
-    private val BASE_URL = "https://api.github.com/orgs/square/"
+    private val BASE_URL = "https://api.github.com"
     private val squareIncService: SquareIncService
     init {
         val gson = GsonBuilder()
@@ -31,7 +32,7 @@ class ReposClient{
         return squareIncService.queryRepos()
     }
 
-    fun queryStargazers(repoName:String): Observable<Response<JsonArray>>{
+    fun queryStargazers(repoName:String): Observable<Response<List<Stargazer>>>{
         return squareIncService.getStargazers(repoName)
     }
 }
