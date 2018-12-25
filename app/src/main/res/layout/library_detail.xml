@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,41 +9,54 @@
         android:id="@+id/repoName"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="48dp"
-        android:textIsSelectable="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
         android:text="@string/reponame"
+        android:textSize="@dimen/repo_header_text_size"
+        android:layout_gravity="center_horizontal"
         tools:context=".LibraryDetailFragment" />
 
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/libraryDetailsRecyclerView"
-            android:name="com.example.rossen.squareinclibs.LibraryListFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/repoName"
-            android:layout_marginLeft="@dimen/recycler_view_horizontal_margin"
-            android:layout_marginRight="@dimen/recycler_view_horizontal_margin"
-            tools:listitem="@layout/library_detail_content" />
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <Button
+        android:id="@+id/bookmarkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_constraintLeft_toRightOf="@+id/repoName"
-        app:layout_anchor="@+id/repoName"
-        app:layout_anchorGravity="end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        android:layout_marginStart="@dimen/button_horizontal_margin"
+        android:layout_marginTop="@dimen/button_vertical_margin"
+        android:layout_marginEnd="@dimen/button_horizontal_margin"
+        android:layout_marginBottom="@dimen/button_vertical_margin"
+        android:text="@string/add_bookmark"
+        android:layout_gravity="center_horizontal"
+       />
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/libraryDetailsRecyclerView"
+        android:name="com.example.rossen.squareinclibs.LibraryListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/recycler_view_horizontal_margin"
+        android:layout_marginRight="@dimen/recycler_view_horizontal_margin"
+        tools:listitem="@layout/library_detail_content"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/detailsProgressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/noDataView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_stargazers_text"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+
+
+
+
+</LinearLayout>

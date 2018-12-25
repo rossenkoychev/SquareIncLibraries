@@ -2,50 +2,43 @@ package com.example.rossen.squareinclibs.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.example.rossen.squareinclibs.model.DataProvider
+import com.example.rossen.squareinclibs.dataProvider.DataProvider
+import com.example.rossen.squareinclibs.model.RepositoriesState
 import com.example.rossen.squareinclibs.model.Repository
-import com.example.rossen.squareinclibs.model.Stargazer
+import com.example.rossen.squareinclibs.model.StargazersState
 
+/**
+ * LibraryListViewModel holds data for all repos, the currently selected repository and all its stargazers
+ */
 class LibraryListViewModel(val context: Application) : AndroidViewModel(context) {
+    private val dataProvider: DataProvider =
+        DataProvider(context)
 
-    var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
+    val repoState: LiveData<RepositoriesState>
+    val stargazersState: LiveData<StargazersState>
     var selectedRepo: MutableLiveData<Repository> = MutableLiveData()
-    var stargazers: MutableLiveData<List<Stargazer>> = MutableLiveData()
-
-    private val dataProvider: DataProvider = DataProvider()
 
     init {
-        repositories = dataProvider.repos
+        repoState = dataProvider.reposState
+        stargazersState = dataProvider.stargazersState
         dataProvider.getRepos()
-        stargazers = dataProvider.stargazers
     }
 
     fun setSelectedRepoValue(selected: Repository?) {
-       //nullify stargazers data when showing new fragment, because if it should
-       // be loaded form web there is a chance to show old data for a moment
-        stargazers.value = null
         //its safe to assume that the repos list is not null since the user has selected one
-        for (repository in repositories.value!!) {
-            if (selected == repository) {
-                selectedRepo.value = selected
-                if (repository.stargazers == null) {
-                    dataProvider.getStargazers(repository)
-                } else {
-                    stargazers.value = repository.stargazers
-//TODO do i need to do anything here ?
-                }
-                break
-            }
+        selected?.let {
+            selectedRepo.value = it
+            dataProvider.getStargazers(it)
         }
     }
 
-//    fun getStargazers(): MutableLiveData<List<Stargazer>>
-//    {
-//        return stargazers
-//    }
-//    fun getStargazers(repository: Repository) {
-//        dataProvider.getStargazers(repository)
-//    }
+    fun addToBookmarks(repo:Repository){
+        dataProvider.addBookmark(repo)
+    }
 
+    fun deleteBookMark(repo:Repository){
+        dataProvider.deleteBookmark(repo)
+    }
 }

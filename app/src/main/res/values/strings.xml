@@ -4,4 +4,10 @@
     <string name="is_bookmarked_icon">is bookmarked</string>
     <string name="avatar">avatar</string>
     <string name="reponame">repoistory name</string>
+    <string name="add_bookmark">add to bookmarks</string>
+    <string name="remove_bookmark">remove bookmark</string>
+    <string name="no_stargazers_text">Oh no, no one likes this :(</string>
+    <string name="error_loading_data">Could not load data!</string>
+    <string name="select_repository">Please select a repo from the list!</string>
+    <string name="stars_count">%1$d stars</string>
 </resources>

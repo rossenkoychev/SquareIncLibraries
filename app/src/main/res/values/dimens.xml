@@ -7,4 +7,11 @@
     <dimen name="recycler_view_horizontal_margin">16dp</dimen>
     <dimen name="avatar_size">50dp</dimen>
     <dimen name="avatar_corner_rounding">50dp</dimen>
+    <dimen name="avatar_margin">4dp</dimen>
+
+    //section text
+    <dimen name="stargazer_name_text_size">16sp</dimen>
+    <dimen name="repo_header_text_size">20sp</dimen>
+    <dimen name="button_vertical_margin">5dp</dimen>
+    <dimen name="button_horizontal_margin">10dp</dimen>
 </resources>

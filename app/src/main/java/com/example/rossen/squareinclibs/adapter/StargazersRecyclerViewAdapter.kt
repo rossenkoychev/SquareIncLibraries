@@ -8,14 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.rossen.squareinclibs.R
-import com.example.rossen.squareinclibs.glide.SquareIncGlideModule
 import com.example.rossen.squareinclibs.model.Stargazer
 import kotlinx.android.synthetic.main.library_detail_content.view.*
-import kotlinx.android.synthetic.main.library_list_content.view.*
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.request.RequestOptions
 
 
 class StargazersRecyclerViewAdapter(val context: Context) :
@@ -40,18 +38,12 @@ class StargazersRecyclerViewAdapter(val context: Context) :
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transforms(
             CenterCrop(),
-            RoundedCorners(context.getResources().getDimension(R.dimen.avatar_corner_rounding).toInt())
+            RoundedCorners(context.resources.getDimension(R.dimen.avatar_corner_rounding).toInt())
         )
         Glide.with(context)
             .load(item.avatar)
             .apply(requestOptions)
             .into(holder.avatar)
-
-
-//        //TODO remove this
-//        with(holder.itemView) {
-//            tag = item
-//        }
     }
 
     override fun getItemCount() = stargazers.size

@@ -11,9 +11,9 @@ import retrofit2.http.Path
 
 interface SquareIncService {
     @GET("/orgs/square/repos")
-    fun queryRepos(): Observable<Response<List<Repository>>>
+    fun queryRepos(): Observable<List<Repository>>
 
     @GET("/repos/square/{repositoryId}/stargazers")
-    fun getStargazers(@Path("repositoryId") repositoryID: String): Observable<Response<List<Stargazer>>>
+    fun getStargazers(@Path("repositoryId") repositoryID: String): Observable<List<Stargazer>>
 
 }

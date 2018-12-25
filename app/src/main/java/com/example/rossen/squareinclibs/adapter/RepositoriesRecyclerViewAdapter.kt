@@ -1,6 +1,7 @@
 package com.example.rossen.squareinclibs.adapter
 
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,8 @@ import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Repository
 import kotlinx.android.synthetic.main.library_list_content.view.*
 
-class RepositoriesRecyclerViewAdapter : RecyclerView.Adapter<RepositoriesRecyclerViewAdapter.ViewHolder>() {
+class RepositoriesRecyclerViewAdapter(val context: Context) :
+    RecyclerView.Adapter<RepositoriesRecyclerViewAdapter.ViewHolder>() {
 
     private var repos: List<Repository> = listOf()
 
@@ -30,14 +32,9 @@ class RepositoriesRecyclerViewAdapter : RecyclerView.Adapter<RepositoriesRecycle
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = repos[position]
         holder.repoName.text = item.name
-        holder.stargazerCount.text = item.stargazerCount.toString()
+        holder.stargazerCount.text = context.getString(R.string.stars_count, item.stargazerCount)
         holder.bookmarkIcon.visibility = if (item.isBookmarked) View.VISIBLE else View.INVISIBLE
 
-
-//        //TODO remove this
-//        with(holder.itemView) {
-//            tag = item
-//        }
     }
 
     override fun getItemCount() = repos.size

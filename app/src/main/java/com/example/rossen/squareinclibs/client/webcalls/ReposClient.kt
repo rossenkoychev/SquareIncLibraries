@@ -28,11 +28,11 @@ class ReposClient{
         squareIncService = retrofit.create(SquareIncService::class.java)
     }
 
-    fun queryRepos(): Observable<Response<List<Repository>>> {
+    fun queryRepos(): Observable<List<Repository>> {
         return squareIncService.queryRepos()
     }
 
-    fun queryStargazers(repoName:String): Observable<Response<List<Stargazer>>>{
+    fun queryStargazers(repoName:String): Observable<List<Stargazer>>{
         return squareIncService.getStargazers(repoName)
     }
 }
