@@ -8,15 +8,11 @@ import com.example.rossen.squareinclibs.client.db.BookmarksDB
 import com.example.rossen.squareinclibs.client.webcalls.ReposClient
 import com.example.rossen.squareinclibs.model.RepositoriesState
 import com.example.rossen.squareinclibs.model.Repository
-import com.example.rossen.squareinclibs.model.Stargazer
 import com.example.rossen.squareinclibs.model.StargazersState
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
-import io.reactivex.subjects.PublishSubject
-import java.util.concurrent.TimeUnit
 
 /**
  * this content provider is used to get data from the appropriate data source. be it web call or db or both
@@ -73,6 +69,7 @@ class DataProvider(val context: Context) {
                 .subscribe({ stargazers ->
                     internalStargazersState.value =
                             StargazersState.Stargazers(stargazers)
+                    repository.stargazers = stargazers
                     disposable.dispose()
                 }
                     , { throwable ->
@@ -95,16 +92,18 @@ class DataProvider(val context: Context) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
         repository.isBookmarked = true
+        internalReposState.value = internalReposState.value
     }
 
     fun deleteBookmark(repository: Repository) {
         Single.fromCallable {
-            bookmarksDB.bookmarkDao().deleteBookmark(BookmarkEntity(repository.name))
+            bookmarksDB.bookmarkDao().deleteBookmark(repository.name)
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
         repository.isBookmarked = false
+        internalReposState.value = internalReposState.value
     }
 
     private fun getBookmarks(repos: List<Repository>) {
@@ -117,6 +116,7 @@ class DataProvider(val context: Context) {
                 for (repo in repos) {
                     repo.isBookmarked = reposNames.contains(repo.name)
                 }
+                internalReposState.value = internalReposState.value
             }
         )
     }

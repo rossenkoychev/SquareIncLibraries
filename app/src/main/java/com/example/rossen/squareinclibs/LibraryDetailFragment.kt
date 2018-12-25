@@ -127,6 +127,7 @@ class LibraryDetailFragment : Fragment() {
     private fun setRepoName(name: String) {
         repoName?.visibility = View.VISIBLE
         bookmarksButton?.visibility = View.VISIBLE
+        bookmarksButton?.text= if(repository!!.isBookmarked) context!!.getString(R.string.remove_bookmark) else context!!.getString(R.string.add_bookmark)
         repoName?.text = name
     }
 

@@ -12,6 +12,6 @@ internal interface BookmarkDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertBookmark(entity: BookmarkEntity)
 
-    @Delete
-    fun deleteBookmark(entity: BookmarkEntity)
+    @Query("DELETE FROM Bookmarks WHERE repoName = :repositoryName")
+    fun deleteBookmark(repositoryName: String)
 }

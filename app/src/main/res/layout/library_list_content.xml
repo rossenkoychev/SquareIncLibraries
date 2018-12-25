@@ -16,9 +16,11 @@
     <ImageView
         android:id="@+id/bookmarkIcon"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_weight="1"
+        android:layout_gravity="center_vertical"
         android:contentDescription="@string/is_bookmarked_icon"
+        android:src="@drawable/bookmark"
         />
 
     <TextView
