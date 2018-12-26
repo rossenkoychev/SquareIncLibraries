@@ -11,24 +11,25 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:layout_weight="5"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/list_items_text" />
 
     <ImageView
         android:id="@+id/bookmarkIcon"
         android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_weight="1"
+        android:layout_height="@dimen/bookmark_icon_size"
         android:layout_gravity="center_vertical"
-        android:contentDescription="@string/is_bookmarked_icon"
-        android:src="@drawable/bookmark"
-        />
+        android:layout_weight="1"
+        android:contentDescription="@string/bookmark_icon"
+        android:src="@drawable/bookmark" />
 
     <TextView
         android:id="@+id/stargazerCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/text_margin"
         android:layout_weight="2"
-        android:layout_gravity="center_vertical"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/list_items_text" />
 </LinearLayout>

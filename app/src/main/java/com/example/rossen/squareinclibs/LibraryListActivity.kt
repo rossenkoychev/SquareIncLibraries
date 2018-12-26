@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
+import com.example.rossen.squareinclibs.R.id.detailFrameLayout
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.activity_library_list.*
 
@@ -23,10 +25,10 @@ class LibraryListActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
 
         setSupportActionBar(toolbar)
-
         toolbar.title = title
 
-        if (detailFrameLayout != null) {
+        val detailsView: View? = findViewById(R.id.detailFrameLayout)
+        if (detailsView?.visibility == View.VISIBLE) {
             // The detail container view will be present only in the
             // large-screen layouts in layout mode (res/values-w900dp-land).
             // If this view is present, then the
@@ -41,8 +43,7 @@ class LibraryListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) =
         when (item.itemId) {
             android.R.id.home -> {
-                //this is needed to mark that user is on the master fragment when recreating the activity
-                viewModel.selectedRepo.value = null
+
                 supportFragmentManager.popBackStack()
                 navigateHome()
                 true
@@ -51,7 +52,8 @@ class LibraryListActivity : AppCompatActivity() {
         }
 
     private fun navigateHome() {
-        //viewModel.selectedRepo.value = null
+        //this is needed to mark that user is on the master fragment when recreating the activity
+        viewModel.selectedRepo.value = null
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 

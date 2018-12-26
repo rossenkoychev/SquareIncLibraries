@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/recycler_view_horizontal_margin"
         android:layout_marginRight="@dimen/recycler_view_horizontal_margin"
         android:visibility="gone"
-        tools:listitem="@layout/library_list_content" />
+        tools:listitem="@layout/repo_element_content" />
 
     <ProgressBar
         android:id="@+id/progressBar"

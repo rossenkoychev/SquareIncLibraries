@@ -10,7 +10,7 @@ import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.model.StargazersState
 
 /**
- * LibraryListViewModel holds data for all repos, the currently selected repository and all its stargazers
+ * LibraryListViewModel holds data for all repos_container, the currently selected repository and all its stargazers
  */
 class LibraryListViewModel(val context: Application) : AndroidViewModel(context) {
     private val dataProvider: DataProvider =
@@ -27,7 +27,7 @@ class LibraryListViewModel(val context: Application) : AndroidViewModel(context)
     }
 
     fun setSelectedRepoValue(selected: Repository?) {
-        //its safe to assume that the repos list is not null since the user has selected one
+        //its safe to assume that the repos_container list is not null since the user has selected one
         selected?.let {
             selectedRepo.value = it
             dataProvider.getStargazers(it)

@@ -10,8 +10,11 @@
     <dimen name="avatar_margin">4dp</dimen>
 
     //section text
-    <dimen name="stargazer_name_text_size">16sp</dimen>
+    <dimen name="important_text_size">18sp</dimen>
     <dimen name="repo_header_text_size">20sp</dimen>
     <dimen name="button_vertical_margin">5dp</dimen>
     <dimen name="button_horizontal_margin">10dp</dimen>
+    <dimen name="list_items_text">16sp</dimen>
+    <dimen name="bookmark_icon_size">30dp</dimen>
+
 </resources>

@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Repository
-import kotlinx.android.synthetic.main.library_list_content.view.*
+import kotlinx.android.synthetic.main.repo_element_content.view.*
 
 class RepositoriesRecyclerViewAdapter(val context: Context) :
     RecyclerView.Adapter<RepositoriesRecyclerViewAdapter.ViewHolder>() {
@@ -25,7 +25,7 @@ class RepositoriesRecyclerViewAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.library_list_content, parent, false)
+            .inflate(R.layout.repo_element_content, parent, false)
         return ViewHolder(view)
     }
 

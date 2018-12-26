@@ -29,7 +29,7 @@ class DataProvider(val context: Context) {
 
 
     /**
-     * makes a web call to retrieve the list of repos
+     * makes a web call to retrieve the list of repos_container
      */
     fun getRepos() {
         internalReposState.value = RepositoriesState.Loading
@@ -53,11 +53,14 @@ class DataProvider(val context: Context) {
     }
 
     /**
-     * Checks if this repo has loaded stargazers, if not then makes a web call to retrieve stargazers
+     * Checks if this repo has loaded stargazers, if not then makes a web call to retrieve stargazers.
+     * If needed we can still load the stargazers from web, even if already loaded, but since they are not expected to change rapidly
+     * we can safely show what has been loaded earlier.
      * @repository - the repo for which we are getting the data
      */
     fun getStargazers(repository: Repository) {
         val stargazerList = repository.stargazers
+
         if (stargazerList == null) {
             internalStargazersState.value = StargazersState.Loading
 
