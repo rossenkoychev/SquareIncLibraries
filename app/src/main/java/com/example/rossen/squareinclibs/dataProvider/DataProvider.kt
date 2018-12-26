@@ -76,7 +76,6 @@ class DataProvider(val context: Context) {
                     disposable.dispose()
                 }
                     , { throwable ->
-                        // stargazers.value = listOf()
                         internalStargazersState.value =
                                 StargazersState.StargazersError(throwable.message)
                         disposable.dispose()
@@ -109,6 +108,7 @@ class DataProvider(val context: Context) {
         internalReposState.value = internalReposState.value
     }
 
+    //get bookmarks is called initially to check which repos are already bookmarked
     private fun getBookmarks(repos: List<Repository>) {
         val disposable = CompositeDisposable()
         disposable.add(bookmarksDB.bookmarkDao().getBookmarks()
@@ -123,6 +123,4 @@ class DataProvider(val context: Context) {
             }
         )
     }
-
-
 }

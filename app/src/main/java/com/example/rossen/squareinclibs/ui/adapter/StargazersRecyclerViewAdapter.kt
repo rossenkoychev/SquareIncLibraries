@@ -1,4 +1,4 @@
-package com.example.rossen.squareinclibs.adapter
+package com.example.rossen.squareinclibs.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

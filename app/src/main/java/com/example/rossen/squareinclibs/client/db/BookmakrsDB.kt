@@ -8,7 +8,7 @@ import android.content.Context
 /**
  * Database for the app's bookmarks
  */
-const val DB_NAME = "purchases.db"
+const val DB_NAME = "bookmarks.db"
 
 @Database(entities = [BookmarkEntity::class], version = 1)
 internal abstract class BookmarksDB : RoomDatabase() {

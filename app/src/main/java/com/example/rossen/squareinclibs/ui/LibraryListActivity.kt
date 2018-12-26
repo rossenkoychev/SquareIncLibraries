@@ -1,4 +1,4 @@
-package com.example.rossen.squareinclibs
+package com.example.rossen.squareinclibs.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
-import com.example.rossen.squareinclibs.R.id.detailFrameLayout
+import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.activity_library_list.*
 
@@ -14,7 +14,7 @@ class LibraryListActivity : AppCompatActivity() {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
+     * device in landscape mode.
      */
     private var twoPane: Boolean = false
     private lateinit var viewModel: LibraryListViewModel
@@ -51,6 +51,7 @@ class LibraryListActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
 
+    // custom navigation logic used both in hardware back button and app back button
     private fun navigateHome() {
         //this is needed to mark that user is on the master fragment when recreating the activity
         viewModel.selectedRepo.value = null
@@ -81,6 +82,7 @@ class LibraryListActivity : AppCompatActivity() {
             .replace(placeholder, fragment)
             .addToBackStack(null)
             .commit()
+        //if we are using single pane mode than we need to hide up button. otherwise the button is not present at all
         if (!twoPane) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }

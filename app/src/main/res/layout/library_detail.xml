@@ -14,7 +14,7 @@
         android:layout_margin="@dimen/text_margin"
         android:text="@string/reponame"
         android:textSize="@dimen/repo_header_text_size"
-        tools:context=".LibraryDetailFragment" />
+        tools:context=".ui.LibraryDetailFragment" />
 
     <Button
         android:id="@+id/bookmarkButton"

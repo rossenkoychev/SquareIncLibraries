@@ -23,22 +23,25 @@ class LibraryListViewModel(val context: Application) : AndroidViewModel(context)
     init {
         repoState = dataProvider.reposState
         stargazersState = dataProvider.stargazersState
+        getRepos()
+    }
+
+    fun getRepos() {
         dataProvider.getRepos()
     }
 
     fun setSelectedRepoValue(selected: Repository?) {
-        //its safe to assume that the repos_container list is not null since the user has selected one
         selected?.let {
             selectedRepo.value = it
             dataProvider.getStargazers(it)
         }
     }
 
-    fun addToBookmarks(repo:Repository){
+    fun addToBookmarks(repo: Repository) {
         dataProvider.addBookmark(repo)
     }
 
-    fun deleteBookMark(repo:Repository){
+    fun deleteBookMark(repo: Repository) {
         dataProvider.deleteBookmark(repo)
     }
 }

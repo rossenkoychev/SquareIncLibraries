@@ -1,4 +1,4 @@
-package com.example.rossen.squareinclibs
+package com.example.rossen.squareinclibs.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -12,7 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.example.rossen.squareinclibs.adapter.RepositoriesRecyclerViewAdapter
+import com.example.rossen.squareinclibs.R
+import com.example.rossen.squareinclibs.ui.adapter.RepositoriesRecyclerViewAdapter
 import com.example.rossen.squareinclibs.model.RepositoriesState
 import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
@@ -22,7 +23,6 @@ import kotlinx.android.synthetic.main.library_list.view.*
 class LibraryListFragment : Fragment() {
 
     private lateinit var viewModel: LibraryListViewModel
-
     private var adapter: RepositoriesRecyclerViewAdapter? = null
     private var progressBar: ProgressBar? = null
     private var errorTextView: TextView? = null
@@ -34,7 +34,6 @@ class LibraryListFragment : Fragment() {
             ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

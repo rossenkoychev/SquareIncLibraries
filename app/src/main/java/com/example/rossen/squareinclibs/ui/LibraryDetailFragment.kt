@@ -1,4 +1,4 @@
-package com.example.rossen.squareinclibs
+package com.example.rossen.squareinclibs.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -13,7 +13,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.example.rossen.squareinclibs.adapter.StargazersRecyclerViewAdapter
+import com.example.rossen.squareinclibs.R
+import com.example.rossen.squareinclibs.ui.adapter.StargazersRecyclerViewAdapter
 import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.model.Stargazer
 import com.example.rossen.squareinclibs.model.StargazersState
@@ -25,7 +26,6 @@ import kotlinx.android.synthetic.main.library_detail.view.*
  */
 class LibraryDetailFragment : Fragment() {
 
-
     private lateinit var viewModel: LibraryListViewModel
     private var adapter: StargazersRecyclerViewAdapter? = null
     private var recyclerView: RecyclerView? = null
@@ -34,7 +34,6 @@ class LibraryDetailFragment : Fragment() {
     private var bookmarksButton: Button? = null
     private var repoName: TextView? = null
     private var repository: Repository? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,13 +79,15 @@ class LibraryDetailFragment : Fragment() {
         recyclerView?.addItemDecoration(dividerItemDecoration)
 
         loadData()
+        setupListeners()
+        //initial state
+        showNoRepoChosen()
     }
 
     /**
      * Depending on the incoming data from viewmodel, decide which view to show
      */
     private fun loadData() {
-
         viewModel.stargazersState.observe(this, Observer { state ->
             when (state) {
                 is StargazersState.Loading -> showProgress()
@@ -104,9 +105,6 @@ class LibraryDetailFragment : Fragment() {
                 setRepoName(repo.name)
             }
         })
-        setupListeners()
-        //initial state
-        showNoRepoChosen()
     }
 
     private fun setupListeners() {
@@ -127,7 +125,10 @@ class LibraryDetailFragment : Fragment() {
     private fun setRepoName(name: String) {
         repoName?.visibility = View.VISIBLE
         bookmarksButton?.visibility = View.VISIBLE
-        bookmarksButton?.text= if(repository!!.isBookmarked) context!!.getString(R.string.remove_bookmark) else context!!.getString(R.string.add_bookmark)
+        bookmarksButton?.text =
+                if (repository!!.isBookmarked) context!!.getString(R.string.remove_bookmark) else context!!.getString(
+                    R.string.add_bookmark
+                )
         repoName?.text = name
     }
 
@@ -162,7 +163,6 @@ class LibraryDetailFragment : Fragment() {
             noStargazersTextView?.text = context!!.resources.getString(R.string.no_stargazers_text)
         } else {
             noStargazersTextView?.visibility = View.GONE
-
             recyclerView?.visibility = View.VISIBLE
             adapter?.loadItems(stargazers)
             adapter?.notifyDataSetChanged()

@@ -7,5 +7,5 @@ class Repository(
     @SerializedName("stargazers_count") val stargazerCount: Int
 ) {
     var isBookmarked: Boolean = false
-    var stargazers: List<Stargazer>?  = null
+    var stargazers: List<Stargazer>? = null
 }

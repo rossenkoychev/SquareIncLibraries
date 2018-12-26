@@ -1,4 +1,4 @@
-package com.example.rossen.squareinclibs.adapter
+package com.example.rossen.squareinclibs.ui.adapter
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
@@ -16,12 +16,7 @@ class RepositoriesRecyclerViewAdapter(val context: Context) :
     RecyclerView.Adapter<RepositoriesRecyclerViewAdapter.ViewHolder>() {
 
     private var repos: List<Repository> = listOf()
-
     var selectedItemSubject: MutableLiveData<Repository> = MutableLiveData()
-
-    fun loadItems(repositories: List<Repository>) {
-        repos = repositories
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,6 +33,10 @@ class RepositoriesRecyclerViewAdapter(val context: Context) :
     }
 
     override fun getItemCount() = repos.size
+
+    fun loadItems(repositories: List<Repository>) {
+        repos = repositories
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val repoName: TextView = view.repoName
