@@ -15,7 +15,10 @@ import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Stargazer
 import kotlinx.android.synthetic.main.library_detail_content.view.*
 
-
+/**
+ * Adapter that handles putting stargazers in the recycler view.
+ * Uses glide for showing the users' avatar
+ */
 class StargazersRecyclerViewAdapter(val context: Context) :
     RecyclerView.Adapter<StargazersRecyclerViewAdapter.ViewHolder>() {
 

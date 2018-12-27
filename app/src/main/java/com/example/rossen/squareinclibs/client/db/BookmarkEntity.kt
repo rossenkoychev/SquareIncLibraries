@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 /**
- *  Bookmark entity class
+ *  Class representing a single Bookmark entity.
  */
 @Entity(tableName = "Bookmarks")
 internal data class BookmarkEntity(

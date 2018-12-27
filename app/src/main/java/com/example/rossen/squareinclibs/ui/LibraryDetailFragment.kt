@@ -22,7 +22,7 @@ import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.library_detail.view.*
 
 /**
- *  Fragment presenting stargazers' data for each repo and giving ability to bookmark repos_container
+ *  Fragment presenting stargazers' data for each repo and giving ability to bookmark repositories
  */
 class LibraryDetailFragment : Fragment() {
 

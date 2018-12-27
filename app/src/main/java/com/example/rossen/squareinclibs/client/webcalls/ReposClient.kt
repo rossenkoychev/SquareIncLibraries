@@ -9,6 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * This class is used to build and parametrise retrofit
+ */
 class ReposClient {
     private val baseUrl = "https://api.github.com"
     private val squareIncService: SquareIncService

@@ -6,6 +6,9 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+/**
+ * Interface for all web calls
+ */
 interface SquareIncService {
     @GET("/orgs/square/repos")
     fun queryRepos(): Observable<List<Repository>>

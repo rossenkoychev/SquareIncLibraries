@@ -19,7 +19,9 @@ import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.library_list.view.*
 
-
+/**
+ *  Fragment showing all repositories with the number of stargazers and indication if they are bookmarked
+ */
 class LibraryListFragment : Fragment() {
 
     private lateinit var viewModel: LibraryListViewModel

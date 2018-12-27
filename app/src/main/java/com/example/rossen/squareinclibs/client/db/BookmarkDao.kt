@@ -3,6 +3,9 @@ package com.example.rossen.squareinclibs.client.db
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
 
+/**
+ * Interface for all methods to interact with the database
+ */
 @Dao
 internal interface BookmarkDao {
 

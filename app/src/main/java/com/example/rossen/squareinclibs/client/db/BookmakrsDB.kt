@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
 /**
- * Database for the app's bookmarks
+ * Database for the app's bookmarks. Uses a singleton pattern to always get the same instance of the DB
  */
 const val DB_NAME = "bookmarks.db"
 

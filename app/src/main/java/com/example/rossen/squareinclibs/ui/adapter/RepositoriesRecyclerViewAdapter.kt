@@ -12,6 +12,10 @@ import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Repository
 import kotlinx.android.synthetic.main.repo_element_content.view.*
 
+/**
+ * Adapter that handles putting repositories in the recycler view.
+ * Also listens for click events
+ */
 class RepositoriesRecyclerViewAdapter(val context: Context) :
     RecyclerView.Adapter<RepositoriesRecyclerViewAdapter.ViewHolder>() {
 

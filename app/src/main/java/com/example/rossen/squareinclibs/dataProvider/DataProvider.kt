@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
- * this content provider is used to get data from the appropriate data source. be it web call or db or both
+ * This content provider is used to get data from the appropriate data source. be it web call or db or both
  */
 class DataProvider(val context: Context) {
 

@@ -10,6 +10,12 @@ import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
 import kotlinx.android.synthetic.main.activity_library_list.*
 
+/**
+ * This activity hold both fragments fore repos and stargazers.
+ * It has two modes- singlepane and twopane.
+ * twopane is used only for tablets in landscape mode, and shows the two fragments side by side
+ * single pane provides simple navigation between the two fragments
+ */
 class LibraryListActivity : AppCompatActivity() {
 
     /**
