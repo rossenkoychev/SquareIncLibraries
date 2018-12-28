@@ -43,7 +43,7 @@ class RepositoriesRecyclerViewAdapter(val context: Context) :
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val repoName: TextView = view.repoName
+        val repoName: TextView = view.repositoryName
         val bookmarkIcon: ImageView = view.bookmarkIcon
         val stargazerCount: TextView = view.stargazerCount
 

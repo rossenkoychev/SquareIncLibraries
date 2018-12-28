@@ -16,15 +16,15 @@ import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.ui.adapter.RepositoriesRecyclerViewAdapter
 import com.example.rossen.squareinclibs.model.RepositoriesState
 import com.example.rossen.squareinclibs.model.Repository
-import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
+import com.example.rossen.squareinclibs.viewmodel.SquareIncLibsViewModel
 import kotlinx.android.synthetic.main.library_list.view.*
 
 /**
  *  Fragment showing all repositories with the number of stargazers and indication if they are bookmarked
  */
-class LibraryListFragment : Fragment() {
+class RepositoriesListFragment : Fragment() {
 
-    private lateinit var viewModel: LibraryListViewModel
+    private lateinit var viewModel: SquareIncLibsViewModel
     private var adapter: RepositoriesRecyclerViewAdapter? = null
     private var progressBar: ProgressBar? = null
     private var errorTextView: TextView? = null
@@ -33,7 +33,7 @@ class LibraryListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = activity?.run {
-            ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
+            ViewModelProviders.of(this).get(SquareIncLibsViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
     }
 
@@ -41,7 +41,7 @@ class LibraryListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.library_list, container, false)
         initVariables(rootView)
         setupAdapter()
@@ -53,7 +53,7 @@ class LibraryListFragment : Fragment() {
         adapter = RepositoriesRecyclerViewAdapter(context!!)
         errorTextView = rootView.errorTextView
         progressBar = rootView.progressBar
-        recyclerView = rootView.libraryListRecyclerView
+        recyclerView = rootView.reposListRecyclerView
     }
 
     /**

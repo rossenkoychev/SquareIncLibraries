@@ -36,10 +36,6 @@ class FragmentsLoadingDataTest {
     val repoName = "html5"
     val stargazerName = "donigian"
 
-    private val MY_ACTIVITY_INTENT =
-        Intent(InstrumentationRegistry.getTargetContext(), SquareIncLibsActivity::class.java)
-
-
     @get:Rule
     var mActivityTestRule: ActivityTestRule<SquareIncLibsActivity> = ActivityTestRule<SquareIncLibsActivity>(
         SquareIncLibsActivity::class
@@ -50,11 +46,6 @@ class FragmentsLoadingDataTest {
     fun registerIdlingResource() {
         // let espresso know to synchronize with background tasks
         IdlingRegistry.getInstance().register(LiveDataStateIdlingResource.getIdlingResource())
-    }
-
-    @Before
-    fun setup() {
-        mActivityTestRule.launchActivity(MY_ACTIVITY_INTENT)
     }
 
     @After

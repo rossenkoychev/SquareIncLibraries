@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.example.rossen.squareinclibs.R
-import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
-import kotlinx.android.synthetic.main.activity_library_list.*
+import com.example.rossen.squareinclibs.viewmodel.SquareIncLibsViewModel
+import kotlinx.android.synthetic.main.activity_layout.*
 
 /**
  * This activity hold both fragments fore repos and stargazers.
@@ -16,19 +16,19 @@ import kotlinx.android.synthetic.main.activity_library_list.*
  * twopane is used only for tablets in landscape mode, and shows the two fragments side by side
  * single pane provides simple navigation between the two fragments
  */
-class LibraryListActivity : AppCompatActivity() {
+class SquareIncLibsActivity : AppCompatActivity() {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device in landscape mode.
      */
     private var twoPane: Boolean = false
-    private lateinit var viewModel: LibraryListViewModel
+    private lateinit var viewModel: SquareIncLibsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_library_list)
-        viewModel = ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
+        setContentView(R.layout.activity_layout)
+        viewModel = ViewModelProviders.of(this).get(SquareIncLibsViewModel::class.java)
 
         setSupportActionBar(toolbar)
         toolbar.title = title
@@ -75,15 +75,15 @@ class LibraryListActivity : AppCompatActivity() {
         })
     }
 
-    private fun showMainFragment() {
-        val fragment = LibraryListFragment()
+     private fun showMainFragment() {
+        val fragment = RepositoriesListFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)
             .commit()
     }
 
     private fun showDetails(placeholder: Int) {
-        val fragment = LibraryDetailFragment()
+        val fragment = StargazersListFragment()
         supportFragmentManager.beginTransaction()
             .replace(placeholder, fragment)
             .addToBackStack(null)

@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Stargazer
-import kotlinx.android.synthetic.main.library_detail_content.view.*
+import kotlinx.android.synthetic.main.stargazer_element_content.view.*
 
 /**
  * Adapter that handles putting stargazers in the recycler view.
@@ -30,7 +30,7 @@ class StargazersRecyclerViewAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.library_detail_content, parent, false)
+            .inflate(R.layout.stargazer_element_content, parent, false)
         return ViewHolder(view)
     }
 

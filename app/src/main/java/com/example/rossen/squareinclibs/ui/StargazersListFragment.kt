@@ -18,15 +18,15 @@ import com.example.rossen.squareinclibs.ui.adapter.StargazersRecyclerViewAdapter
 import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.model.Stargazer
 import com.example.rossen.squareinclibs.model.StargazersState
-import com.example.rossen.squareinclibs.viewmodel.LibraryListViewModel
+import com.example.rossen.squareinclibs.viewmodel.SquareIncLibsViewModel
 import kotlinx.android.synthetic.main.library_detail.view.*
 
 /**
  *  Fragment presenting stargazers' data for each repo and giving ability to bookmark repositories
  */
-class LibraryDetailFragment : Fragment() {
+class StargazersListFragment : Fragment() {
 
-    private lateinit var viewModel: LibraryListViewModel
+    private lateinit var viewModel: SquareIncLibsViewModel
     private var adapter: StargazersRecyclerViewAdapter? = null
     private var recyclerView: RecyclerView? = null
     private var noStargazersTextView: TextView? = null
@@ -39,7 +39,7 @@ class LibraryDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = activity?.run {
-            ViewModelProviders.of(this).get(LibraryListViewModel::class.java)
+            ViewModelProviders.of(this).get(SquareIncLibsViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
     }
 
@@ -56,7 +56,7 @@ class LibraryDetailFragment : Fragment() {
     private fun initVariables(rootView: View) {
         //since this happens after onAttach , we are safe to assume that context is not null
         adapter = StargazersRecyclerViewAdapter(context!!)
-        recyclerView = rootView.libraryDetailsRecyclerView
+        recyclerView = rootView.stargazersRecyclerView
         noStargazersTextView = rootView.noDataView
         progressBar = rootView.detailsProgressBar
         bookmarksButton = rootView.bookmarkButton

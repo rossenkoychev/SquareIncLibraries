@@ -10,9 +10,9 @@ import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.model.StargazersState
 
 /**
- * LibraryListViewModel holds state of data for all repos, the currently selected repository and all its stargazers
+ * SquareIncLibsViewModel holds state of data for all repos, the currently selected repository and all its stargazers
  */
-class LibraryListViewModel(val context: Application) : AndroidViewModel(context) {
+class SquareIncLibsViewModel(val context: Application) : AndroidViewModel(context) {
     private val dataProvider: DataProvider =
         DataProvider(context)
 
@@ -26,7 +26,7 @@ class LibraryListViewModel(val context: Application) : AndroidViewModel(context)
         getRepos()
     }
 
-    fun getRepos() {
+    private fun getRepos() {
         dataProvider.getRepos()
     }
 

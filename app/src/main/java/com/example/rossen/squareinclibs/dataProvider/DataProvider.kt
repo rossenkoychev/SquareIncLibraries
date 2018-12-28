@@ -32,6 +32,7 @@ class DataProvider(val context: Context) {
      * makes a web call to retrieve the list of repos_container
      */
     fun getRepos() {
+        LiveDataStateIdlingResource.increment()
         internalReposState.value = RepositoriesState.Loading
         val disposable = CompositeDisposable()
         disposable.add(reposClient.queryRepos()
@@ -43,6 +44,7 @@ class DataProvider(val context: Context) {
                         RepositoriesState.Repositories(repositories)
                 getBookmarks(repositories)
                 disposable.dispose()
+                LiveDataStateIdlingResource.decrement()
             }
                 , { throwable ->
                     internalReposState.value =

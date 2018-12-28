@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.LibraryListActivity">
+    tools:context=".ui.SquareIncLibsActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/libraryListRecyclerView"
+        android:id="@+id/reposListRecyclerView"
         android:name="com.example.rossen.squareinclibs.LibraryListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

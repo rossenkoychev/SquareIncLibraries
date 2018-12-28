@@ -14,7 +14,7 @@
         android:layout_margin="@dimen/text_margin"
         android:text="@string/reponame"
         android:textSize="@dimen/repo_header_text_size"
-        tools:context=".ui.LibraryDetailFragment" />
+        tools:context=".ui.StargazersListFragment" />
 
     <Button
         android:id="@+id/bookmarkButton"
@@ -29,14 +29,14 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/libraryDetailsRecyclerView"
+        android:id="@+id/stargazersRecyclerView"
         android:name="com.example.rossen.squareinclibs.LibraryListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/recycler_view_horizontal_margin"
         android:layout_marginRight="@dimen/recycler_view_horizontal_margin"
         android:visibility="gone"
-        tools:listitem="@layout/library_detail_content" />
+        tools:listitem="@layout/stargazer_element_content" />
 
     <ProgressBar
         android:id="@+id/detailsProgressBar"
@@ -53,6 +53,5 @@
         android:text="@string/no_stargazers_text"
         android:textSize="@dimen/important_text_size"
         android:visibility="gone" />
-
 
 </LinearLayout>

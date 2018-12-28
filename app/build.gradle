@@ -32,6 +32,7 @@ ext {
     mRxkotlinVersion = "2.0.0"
     mRxbindingVersion = "2.1.1"
     mRetrofitVersion = "2.4.0"
+    mEspressoVersion = "3.0.2"
 }
 
 dependencies {
@@ -64,9 +65,6 @@ dependencies {
     // Architecture components
     implementation "android.arch.lifecycle:runtime:$mArchLifecycleVersion"
     implementation "android.arch.lifecycle:extensions:$mArchLifecycleVersion"
-    // implementation "android.arch.lifecycle:common-java8:$mArchLifecycleVersion"
-    //implementation "android.arch.lifecycle:compiler:$mArchLifecycleVersion"
-    // implementation "android.arch.lifecycle:compiler:$mArchLifecycleVersion"
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
@@ -74,4 +72,13 @@ dependencies {
 
     kapt 'android.arch.lifecycle:compiler:1.1.1'
     kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    //testing
+    implementation "android.arch.core:core-testing:1.1.1"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$mEspressoVersion"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$mEspressoVersion"
+    implementation "com.android.support.test.espresso:espresso-contrib:$mEspressoVersion"
 }
