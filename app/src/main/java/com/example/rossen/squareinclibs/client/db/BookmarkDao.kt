@@ -2,12 +2,14 @@ package com.example.rossen.squareinclibs.client.db
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
+import javax.inject.Singleton
 
 /**
  * Interface for all methods to interact with the database
  */
 @Dao
-internal interface BookmarkDao {
+@Singleton
+interface BookmarkDao {
 
     @Query("SELECT * FROM Bookmarks")
     fun getBookmarks(): Flowable<List<BookmarkEntity>>

@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
  *  Class representing a single Bookmark entity.
  */
 @Entity(tableName = "Bookmarks")
-internal data class BookmarkEntity(
+data class BookmarkEntity(
     @ColumnInfo(name = "repoName") val repoName: String
 ) {
     @PrimaryKey(autoGenerate = true)

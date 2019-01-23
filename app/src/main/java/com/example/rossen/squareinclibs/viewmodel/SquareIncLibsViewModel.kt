@@ -13,8 +13,7 @@ import com.example.rossen.squareinclibs.model.StargazersState
  * SquareIncLibsViewModel holds state of data for all repos, the currently selected repository and all its stargazers
  */
 class SquareIncLibsViewModel(val context: Application) : AndroidViewModel(context) {
-    private val dataProvider: DataProvider =
-        DataProvider(context)
+    private val dataProvider: DataProvider = DataProvider()
 
     val repoState: LiveData<RepositoriesState>
     val stargazersState: LiveData<StargazersState>

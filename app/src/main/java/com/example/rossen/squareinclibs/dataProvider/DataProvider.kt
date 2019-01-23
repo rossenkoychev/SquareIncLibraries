@@ -2,7 +2,7 @@ package com.example.rossen.squareinclibs.dataProvider
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.content.Context
+import com.example.rossen.squareinclibs.App
 import com.example.rossen.squareinclibs.client.db.BookmarkEntity
 import com.example.rossen.squareinclibs.client.db.BookmarksDB
 import com.example.rossen.squareinclibs.client.webcalls.ReposClient
@@ -13,20 +13,26 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * This content provider is used to get data from the appropriate data source. be it web call or db or both
  */
-class DataProvider(val context: Context) {
+class DataProvider {
 
     private val internalReposState = MutableLiveData<RepositoriesState>()
     private val internalStargazersState = MutableLiveData<StargazersState>()
     private val reposClient: ReposClient = ReposClient()
-    private val bookmarksDB = BookmarksDB.getInstance(context)
+
+    @Inject
+    lateinit var bookmarksDB: BookmarksDB
 
     val reposState: LiveData<RepositoriesState> = internalReposState
     val stargazersState: LiveData<StargazersState> = internalStargazersState
 
+    init {
+        bookmarksDB = App.instance.dbComponent.providesDataBase()
+    }
 
     /**
      * makes a web call to retrieve the list of repos_container
