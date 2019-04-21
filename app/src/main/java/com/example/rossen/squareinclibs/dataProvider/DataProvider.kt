@@ -1,7 +1,7 @@
 package com.example.rossen.squareinclibs.dataProvider
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rossen.squareinclibs.App
 import com.example.rossen.squareinclibs.client.db.BookmarkEntity
 import com.example.rossen.squareinclibs.client.db.BookmarksDB
@@ -24,20 +24,17 @@ class DataProvider {
     private val internalStargazersState = MutableLiveData<StargazersState>()
     private val reposClient: ReposClient = ReposClient()
 
-    @Inject
-    lateinit var bookmarksDB: BookmarksDB
+    @set:Inject
+    var bookmarksDB: BookmarksDB = App.instance.dbComponent.providesDataBase()
 
     val reposState: LiveData<RepositoriesState> = internalReposState
     val stargazersState: LiveData<StargazersState> = internalStargazersState
-
-    init {
-        bookmarksDB = App.instance.dbComponent.providesDataBase()
-    }
 
     /**
      * makes a web call to retrieve the list of repos_container
      */
     fun getRepos() {
+        //Idling resource should be used for debug build only
         LiveDataStateIdlingResource.increment()
         internalReposState.value = RepositoriesState.Loading
         val disposable = CompositeDisposable()
@@ -46,15 +43,13 @@ class DataProvider {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ repositories ->
-                internalReposState.value =
-                        RepositoriesState.Repositories(repositories)
                 getBookmarks(repositories)
                 disposable.dispose()
                 LiveDataStateIdlingResource.decrement()
             }
                 , { throwable ->
                     internalReposState.value =
-                            RepositoriesState.ReposError(throwable.message)
+                        RepositoriesState.ReposError(throwable.message)
                     disposable.dispose()
                 }
             ))
@@ -79,13 +74,13 @@ class DataProvider {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ stargazers ->
                     internalStargazersState.value =
-                            StargazersState.Stargazers(stargazers)
+                        StargazersState.Stargazers(stargazers)
                     repository.stargazers = stargazers
                     disposable.dispose()
                 }
                     , { throwable ->
                         internalStargazersState.value =
-                                StargazersState.StargazersError(throwable.message)
+                            StargazersState.StargazersError(throwable.message)
                         disposable.dispose()
                     }
                 ))
@@ -102,7 +97,6 @@ class DataProvider {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
         repository.isBookmarked = true
-        internalReposState.value = internalReposState.value
     }
 
     fun deleteBookmark(repository: Repository) {
@@ -113,7 +107,6 @@ class DataProvider {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
         repository.isBookmarked = false
-        internalReposState.value = internalReposState.value
     }
 
     //get bookmarks is called initially to check which repos are already bookmarked
@@ -127,7 +120,7 @@ class DataProvider {
                 for (repo in repos) {
                     repo.isBookmarked = reposNames.contains(repo.name)
                 }
-                internalReposState.value = internalReposState.value
+                internalReposState.value = RepositoriesState.Repositories(repos)
             }
         )
     }

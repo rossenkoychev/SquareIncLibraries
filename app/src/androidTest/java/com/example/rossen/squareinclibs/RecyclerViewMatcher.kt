@@ -1,8 +1,8 @@
 package com.example.rossen.squareinclibs
 
 import android.content.res.Resources
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -44,7 +44,7 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
                 this.resources = view.getResources()
 
                 if (childView == null) {
-                    val recyclerView = view.getRootView().findViewById(recyclerViewId) as RecyclerView
+                    val recyclerView = view.rootView.findViewById(recyclerViewId) as RecyclerView
                     if (recyclerView != null && recyclerView.id == recyclerViewId) {
                         childView = recyclerView.findViewHolderForAdapterPosition(position)!!.itemView
                     } else {

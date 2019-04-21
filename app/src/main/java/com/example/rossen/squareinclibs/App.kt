@@ -1,9 +1,9 @@
 package com.example.rossen.squareinclibs
 
 import android.app.Application
-import com.example.rossen.squareinclibs.dependancyInjection.component.DaggerDbComponent
-import com.example.rossen.squareinclibs.dependancyInjection.component.DbComponent
-import com.example.rossen.squareinclibs.dependancyInjection.module.DBModule
+import com.example.rossen.squareinclibs.di.component.DaggerDbComponent
+import com.example.rossen.squareinclibs.di.component.DbComponent
+import com.example.rossen.squareinclibs.di.module.DBModule
 
 class App : Application() {
 

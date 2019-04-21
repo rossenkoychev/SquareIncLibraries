@@ -1,13 +1,13 @@
 package com.example.rossen.squareinclibs.dataProvider
 
-import android.support.test.espresso.IdlingResource
-import android.support.test.espresso.idling.CountingIdlingResource
+import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.idling.CountingIdlingResource
 
 
 object LiveDataStateIdlingResource {
     private const val RESOURCE = "GLOBAL"
 
-    private val mCountingIdlingResource =  CountingIdlingResource(RESOURCE)
+    private val mCountingIdlingResource = CountingIdlingResource(RESOURCE)
 
     fun increment() {
         mCountingIdlingResource.increment()

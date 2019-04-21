@@ -1,11 +1,11 @@
 package com.example.rossen.squareinclibs.ui
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.viewmodel.SquareIncLibsViewModel
 import kotlinx.android.synthetic.main.activity_layout.*
@@ -75,7 +75,7 @@ class SquareIncLibsActivity : AppCompatActivity() {
         })
     }
 
-     private fun showMainFragment() {
+    private fun showMainFragment() {
         val fragment = RepositoriesListFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)

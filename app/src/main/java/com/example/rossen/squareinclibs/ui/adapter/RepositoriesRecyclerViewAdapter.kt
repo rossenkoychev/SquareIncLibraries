@@ -1,13 +1,13 @@
 package com.example.rossen.squareinclibs.ui.adapter
 
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rossen.squareinclibs.R
 import com.example.rossen.squareinclibs.model.Repository
 import kotlinx.android.synthetic.main.repo_element_content.view.*

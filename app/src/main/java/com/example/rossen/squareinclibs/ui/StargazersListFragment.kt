@@ -1,23 +1,23 @@
 package com.example.rossen.squareinclibs.ui
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rossen.squareinclibs.R
-import com.example.rossen.squareinclibs.ui.adapter.StargazersRecyclerViewAdapter
 import com.example.rossen.squareinclibs.model.Repository
 import com.example.rossen.squareinclibs.model.Stargazer
 import com.example.rossen.squareinclibs.model.StargazersState
+import com.example.rossen.squareinclibs.ui.adapter.StargazersRecyclerViewAdapter
 import com.example.rossen.squareinclibs.viewmodel.SquareIncLibsViewModel
 import kotlinx.android.synthetic.main.library_detail.view.*
 
@@ -126,9 +126,9 @@ class StargazersListFragment : Fragment() {
         repoName?.visibility = View.VISIBLE
         bookmarksButton?.visibility = View.VISIBLE
         bookmarksButton?.text =
-                if (repository!!.isBookmarked) context!!.getString(R.string.remove_bookmark) else context!!.getString(
-                    R.string.add_bookmark
-                )
+            if (repository!!.isBookmarked) context!!.getString(R.string.remove_bookmark) else context!!.getString(
+                R.string.add_bookmark
+            )
         repoName?.text = name
     }
 

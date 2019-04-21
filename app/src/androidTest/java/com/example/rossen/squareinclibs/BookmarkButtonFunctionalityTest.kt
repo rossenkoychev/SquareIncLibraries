@@ -1,28 +1,28 @@
 package com.example.rossen.squareinclibs
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import com.example.rossen.squareinclibs.ui.SquareIncLibsActivity
+import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
+import com.example.rossen.squareinclibs.dataProvider.LiveDataStateIdlingResource
 import com.example.rossen.squareinclibs.ui.RepositoriesListFragment
+import com.example.rossen.squareinclibs.ui.SquareIncLibsActivity
+import junit.framework.AssertionFailedError
+import org.hamcrest.Matchers.not
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import android.support.test.InstrumentationRegistry
-import android.content.Intent
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.IdlingRegistry
-import com.example.rossen.squareinclibs.dataProvider.LiveDataStateIdlingResource
-import org.hamcrest.Matchers.not
-import    android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.v7.widget.RecyclerView
-import org.junit.After
-import junit.framework.AssertionFailedError
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 
 /**
  * This class test bookmarking functionality
@@ -33,14 +33,13 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 
 class BookmarkButtonFunctionalityTest {
 
-    private val MY_ACTIVITY_INTENT =
-        Intent(InstrumentationRegistry.getTargetContext(), SquareIncLibsActivity::class.java)
+    private val myActivityIntent =
+        Intent(InstrumentationRegistry.getInstrumentation().context, SquareIncLibsActivity::class.java)
 
 
     @get:Rule
     var mActivityTestRule: ActivityTestRule<SquareIncLibsActivity> = ActivityTestRule<SquareIncLibsActivity>(
-        SquareIncLibsActivity::class
-            .java
+        SquareIncLibsActivity::class.java
     )
 
     @Before
@@ -51,7 +50,7 @@ class BookmarkButtonFunctionalityTest {
 
     @Before
     fun setup() {
-        mActivityTestRule.launchActivity(MY_ACTIVITY_INTENT)
+        mActivityTestRule.launchActivity(myActivityIntent)
     }
 
     @After
@@ -73,17 +72,17 @@ class BookmarkButtonFunctionalityTest {
     @Test
     fun checkIfBookmarksButtonWorks() {
         //before making an assertion we need to check the bookmark state of this repository
-        var isBookmarked: Boolean
+        var isBookmarked=
         try {
             onView(
                 withRecyclerView(R.id.reposListRecyclerView)
                     .atPositionOnView(1, R.id.bookmarkIcon)
             )
                 .check(matches((isDisplayed())))
-            isBookmarked = true
+             true
             // repo is bookmarked
         } catch (e: AssertionFailedError) {
-            isBookmarked = false
+             false
             // repo is not bookmarked
 
         }
@@ -93,24 +92,23 @@ class BookmarkButtonFunctionalityTest {
 
         onView((withId(R.id.bookmarkButton))).perform(click())
 
-       // if(mActivityTestRule.activity.)
+        // if(mActivityTestRule.activity.)
         Espresso.pressBack()
-       // Espresso.pressBack()
+        // Espresso.pressBack()
         //if it was bookmarked , should not be bookmarked by now.
-        if(isBookmarked){
+        if (isBookmarked) {
             onView(
                 withRecyclerView(R.id.reposListRecyclerView)
                     .atPositionOnView(1, R.id.bookmarkIcon)
             )
                 .check(matches(not(isDisplayed())))
-        }else{
+        } else {
             onView(
                 withRecyclerView(R.id.reposListRecyclerView)
                     .atPositionOnView(1, R.id.bookmarkIcon)
             )
                 .check(matches(isDisplayed()))
         }
-
 
         //click it again to go back to initial state
         onView(withId(R.id.reposListRecyclerView))

@@ -28,7 +28,7 @@
         android:text="@string/add_bookmark" />
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stargazersRecyclerView"
         android:name="com.example.rossen.squareinclibs.LibraryListFragment"
         android:layout_width="match_parent"
